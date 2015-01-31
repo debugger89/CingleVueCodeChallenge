@@ -14,13 +14,22 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+/**
+ * The Class SearchTestStepDefinition.
+ * This class contains the feature definition commands for the feature files.
+ */
 public class SearchTestStepDefinition {
 	
+	/** The web browser. */
 	private WebBrowser browser;
+	
+	/** The test commands. */
 	private TestCommands commands;
 	
+	/** The Constant logger. */
 	final static Logger logger = Logger.getLogger(TestCommands.class);
 
+	
 	@Given("^A new \"(.*)\" browser window is open$")
 	public void browserSelect(String browserType) {
 		browser = new WebBrowser(browserType);
@@ -35,11 +44,13 @@ public class SearchTestStepDefinition {
 		commands.waitForElement(HomePage.companyLogoLink);
 	}
 	
+	
 	@When("^I search for query \"(.*)\" in the search box$")
 	public void searchQuery(String searchQuery) {
 		commands.type(HomePage.searchBoxInputField, searchQuery);
 		commands.pressKeys(HomePage.searchBoxInputField, Keys.ENTER);
 	}
+	
 	
 	@Then("^More than \"([0-9]+)\" search results must be visible$")
 	public void verifyResults(int expectedResultCount) {
@@ -52,6 +63,9 @@ public class SearchTestStepDefinition {
 		}
 	}
 	
+	/**
+	 * Executes after each scenario.
+	 */
 	@After
 	public void afterScenario(){
 		

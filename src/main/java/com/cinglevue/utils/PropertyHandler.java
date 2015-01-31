@@ -28,6 +28,12 @@ public class PropertyHandler {
     }
 
 
+    /**
+     * Gets the property.
+     *
+     * @param key the key
+     * @return the property
+     */
     public String getProperty(String key) {
     	
     	String value = props.getProperty(key);
@@ -36,9 +42,8 @@ public class PropertyHandler {
     
     /**
      * Loads the runtime property file.
-     * 
      */
-    public final void loadProperty() {
+    private final void loadProperty() {
 
     	InputStream is = null;
 

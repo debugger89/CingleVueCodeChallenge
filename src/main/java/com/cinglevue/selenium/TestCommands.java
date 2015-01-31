@@ -10,18 +10,34 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.cinglevue.utils.PropertyHandler;
 
+/**
+ * The Class TestCommands.
+ * This class contains the commands for the feature definition files. 
+ */
 public class TestCommands {
 
+	/** The web driver. */
 	private WebDriver driver;
 
+	/** The Constant logger. */
 	final static Logger logger = Logger.getLogger(TestCommands.class);
+	
+	/** The time out. */
 	private int timeOut;
 
+	/**
+	 * Instantiates a new test commands.
+	 *
+	 * @param browser the browser
+	 */
 	public TestCommands(WebBrowser browser) {
 		this.driver = browser.getDriver();
 		init();
 	}
 
+	/**
+	 * Initializes the execution parameters.
+	 */
 	private void init() {
 		
 		PropertyHandler handler = new PropertyHandler("/execution.properties");
@@ -29,6 +45,11 @@ public class TestCommands {
 		this.timeOut = Integer.parseInt(timeout);
 	}
 
+	/**
+	 * Navigate to a given url.
+	 *
+	 * @param url the url
+	 */
 	public void navigateToURL(String url) {
 
 		try {
@@ -41,6 +62,12 @@ public class TestCommands {
 
 	}
 
+	/**
+	 * Type on a web element.
+	 *
+	 * @param byLocator the by locator
+	 * @param text the text
+	 */
 	public void type(By byLocator, String text) {
 
 		WebElement element = findElement(byLocator);
@@ -50,6 +77,12 @@ public class TestCommands {
 
 	}
 
+	/**
+	 * Press keys on a web element.
+	 *
+	 * @param byLocator the by locator
+	 * @param key the key
+	 */
 	public void pressKeys(By byLocator, Keys key) {
 
 		WebElement element = findElement(byLocator);
@@ -59,6 +92,12 @@ public class TestCommands {
 
 	}
 	
+	/**
+	 * Gets the object count of a web element.
+	 *
+	 * @param byLocator the by locator
+	 * @return the object count
+	 */
 	public int getObjectCount(By byLocator) {
 
 		int count = driver.findElements(byLocator).size();
@@ -68,12 +107,23 @@ public class TestCommands {
 
 	}
 	
+	/**
+	 * Wait for element in the web page.
+	 *
+	 * @param byLocator the by locator
+	 */
 	public void waitForElement(By byLocator) {
 
 		findElement(byLocator);
 		logger.info("Waited for the object " + byLocator + " to appear.");
 	}
 
+	/**
+	 * Find element in the web page.
+	 *
+	 * @param byLocator the by locator
+	 * @return the web element
+	 */
 	private WebElement findElement(By byLocator) {
 
 		WebElement element = (new WebDriverWait(driver, timeOut))
